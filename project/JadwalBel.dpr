@@ -2,7 +2,10 @@ program JadwalBel;
 
 uses
   Vcl.Forms,
-  MainForm in '..\src\MainForm.pas' {FormUtama};
+  Entities in '..\src\Entities.pas',
+  View.Main in '..\src\View.Main.pas' {FormUtama},
+  ConnectionModule in '..\src\ConnectionModule.pas' {SQLiteSQLiteConnection: TDataModule},
+  DbUtils in '..\src\DbUtils.pas';
 
 {$R *.res}
 

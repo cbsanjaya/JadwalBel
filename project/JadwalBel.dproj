@@ -106,10 +106,17 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\src\MainForm.pas">
+        <DCCReference Include="..\src\Entities.pas"/>
+        <DCCReference Include="..\src\View.Main.pas">
             <Form>FormUtama</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\src\ConnectionModule.pas">
+            <Form>SQLiteSQLiteConnection</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\src\DbUtils.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -132,7 +139,7 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\JadwalBel.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\output\Debug\JadwalBel.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>JadwalBel.exe</RemoteName>
                         <Overwrite>true</Overwrite>
