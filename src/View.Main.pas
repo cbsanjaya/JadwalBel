@@ -42,6 +42,7 @@ type
     {$ENDIF}
     FManager: TObjectManager;
     FBell: TBell;
+    function SearchBell(ANow: TDateTime): TBell;
     procedure CheckSchedule(ANow: TDateTime);
     procedure ShowTime(ANow: TDateTime);
   public
@@ -67,7 +68,10 @@ var
 begin
   if FBell = nil then
   begin
-    FBell := FManager.Find<TBell>.UniqueResult;
+    FBell := SearchBell(ANow);
+    if FBell = nil then
+      Exit;
+
     Details := FBell.Details;
     LvBells.Items.Clear;
     for Detail in Details do
@@ -86,7 +90,7 @@ begin
     begin
       LabelNext.Caption := '';
       if FileExists(Detail.Sound) then
-        sndPlaySound(PChar(Detail.Sound), SND_ASYNC);
+        sndPlaySound(PChar(Detail.Sound), SND_SYNC);
       exit;
     end;
 
@@ -111,7 +115,7 @@ begin
 //  DbUtils.CreateDummyData(Con);
   FManager := TObjectManager.Create(Con);
   {$IFDEF DEBUG}
-    LogSql := TSqlLog.Create;
+  LogSql := TSqlLog.Create;
   {$ENDIF}
 end;
 
@@ -122,6 +126,16 @@ begin
   {$IFDEF DEBUG}
   LogSql.Free;
   {$ENDIF}
+end;
+
+function TFormUtama.SearchBell(ANow: TDateTime): TBell;
+var
+  LSchedule: TSchedule;
+begin
+  Result := nil;
+  LSchedule := FManager.Find<TSchedule>(DayOfWeek(ANow));
+  if LSchedule.Bell.HasValue then
+    Result := LSchedule.Bell.Value;
 end;
 
 procedure TFormUtama.ShowTime(ANow: TDateTime);
@@ -153,8 +167,7 @@ begin
 
   ShowTime(LNow);
 
-//  if SecondOf(LNow) = 0 then
-    CheckSchedule(LNow);
+  CheckSchedule(LNow);
 end;
 
 end.
