@@ -3,6 +3,9 @@ unit View.Main;
 interface
 
 uses
+  {$IFDEF DEBUG}
+  Log.Sql,
+  {$ENDIF}
   Generics.Collections,
   Aurelius.Drivers.Interfaces,
   Aurelius.Engine.ObjectManager,
@@ -34,6 +37,9 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
+    {$IFDEF DEBUG}
+    LogSql : TSqlLog;
+    {$ENDIF}
     FManager: TObjectManager;
     FBell: TBell;
     procedure CheckSchedule(ANow: TDateTime);
@@ -49,7 +55,9 @@ implementation
 
 {$R *.dfm}
 
-uses ConnectionModule, DbUtils;
+uses
+  ConnectionModule,
+  DbUtils;
 
 procedure TFormUtama.CheckSchedule(ANow: TDateTime);
 var
@@ -102,11 +110,18 @@ begin
   DbUtils.UpdateDatabase(Con);
 //  DbUtils.CreateDummyData(Con);
   FManager := TObjectManager.Create(Con);
+  {$IFDEF DEBUG}
+    LogSql := TSqlLog.Create;
+  {$ENDIF}
 end;
 
 procedure TFormUtama.FormDestroy(Sender: TObject);
 begin
   FManager.Free;
+
+  {$IFDEF DEBUG}
+  LogSql.Free;
+  {$ENDIF}
 end;
 
 procedure TFormUtama.ShowTime(ANow: TDateTime);
