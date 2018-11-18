@@ -14,13 +14,13 @@ type
   private
     FId: Integer;
     FName: string;
-    FTime: TTime;
+    FTime: string;
     FSound: string;
   public
-    constructor Create(const AName: string; ATime: TTIme; ASound:string); overload;
+    constructor Create(const AName: string; ATime: string; ASound:string); overload;
     property Id: Integer read FId write FId;
     property Name: string read FName write FName;
-    property Time: TTime read FTime write FTime;
+    property Time: string read FTime write FTime;
     property Sound: string read FSound write FSound;
   end;
 
@@ -113,7 +113,7 @@ end;
 { TBellDetail }
 
 constructor TBellDetail.Create(const AName: string; 
-  ATime: TTIme;  ASound: string);
+  ATime: string;  ASound: string);
 begin
   FName := AName;
   FTime := ATime;

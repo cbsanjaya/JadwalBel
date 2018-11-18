@@ -18,7 +18,9 @@ uses
   Vcl.Dialogs,
   Vcl.ExtCtrls,
   Vcl.StdCtrls,
-  System.DateUtils, Vcl.ComCtrls;
+  System.DateUtils,
+  Vcl.ComCtrls,
+  Winapi.MMSystem;
 
 type
   TFormUtama = class(TForm)
@@ -64,7 +66,7 @@ begin
     begin
       Item := LvBells.Items.Add;
       Item.Caption := Detail.Name;
-      Item.SubItems.Add(FormatDateTime('hh:nn:ss', Detail.Time));
+      Item.SubItems.Add(Detail.Time);
       Item.SubItems.Add(Detail.Sound)
     end;
   end;
@@ -72,18 +74,20 @@ begin
   Details := FBell.Details;
   for Detail in Details do
   begin
-    if FormatDateTime('hh:nn:ss', ANow) = FormatDateTime('hh:nn:ss', Detail.Time) then
+    if FormatDateTime('hh:nn:ss', ANow) = Detail.Time then
     begin
       LabelNext.Caption := '';
+      if FileExists(Detail.Sound) then
+        sndPlaySound(PChar(Detail.Sound), SND_ASYNC);
       exit;
     end;
 
     if LabelNext.Caption = '' then
     begin
-      if FormatDateTime('hh:nn:ss', Detail.Time) > FormatDateTime('hh:nn:ss', ANow) then
+      if Detail.Time > FormatDateTime('hh:nn:ss', ANow) then
       begin
         LabelNext.Caption := Format('Selanjutnya %s pada pukul %s',
-          [Detail.Name, FormatDateTime('hh:nn:ss', Detail.Time)]);
+          [Detail.Name, Detail.Time]);
         exit;
       end;
     end;

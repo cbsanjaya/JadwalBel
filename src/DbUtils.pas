@@ -46,20 +46,21 @@ var
   LBell: TBell;
 begin
   LBell := TBell.Create('Bel Normal Selasa Rabu Kamis');
-  LBell.Details.Add(TBellDetail.Create('Persiapan Upacara', EncodeTime(6,40,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('musik asmaul husna', EncodeTime(6,41,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Bunyi Bel', EncodeTime(6,42,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Masuk Kelas', EncodeTime(6,43,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Pertama', EncodeTime(6,44,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 2', EncodeTime(6,45,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 3', EncodeTime(6,46,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 4', EncodeTime(6,47,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Istirahat', EncodeTime(6,48,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 7', EncodeTime(6,49,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 8', EncodeTime(6,50,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 9', EncodeTime(6,51,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Sholat Dhuhur', EncodeTime(6,52,0,0), './sounds/1.mp3'));
-  LBell.Details.Add(TBellDetail.Create('Persiapan Pulang', EncodeTime(6,53,0,0), './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Upacara', '06:40:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('musik asmaul husna', '06:41:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Bunyi Bel', '06:42:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Masuk Kelas', '06:43:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Pertama', '06:44:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 2', '06:45:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 3', '06:46:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 4', '06:47:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Istirahat', '06:48:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 7', '06:49:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 8', '06:50:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Jam Ke 9', '06:51:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Sholat Dhuhur', '06:52:00', './sounds/1.mp3'));
+  LBell.Details.Add(TBellDetail.Create('Persiapan Pulang', '06:53:00', './sounds/1.mp3'));
+
   AManager.Save(LBell);
 end;
 
